@@ -18,6 +18,7 @@ function ztp_log() {
     echo "$(date +"%b %d %H:%M:%S") "$1 >> $LOGFILE
 }
 
+#TODO modify this later
 fuction check_rpms(){
 	complete=`xrcmd "show install active" | grep k9sec | head -n1 | wc -l`
 	ztp_log "Waiting for k9sec package to be activated"
@@ -41,7 +42,7 @@ function install_all_rpms(){
 		echo -ne "yes\n 2048\n" | xrcmd "crypto key generate rsa"
 	fi
 	
-	ztp_log "### XR K9SEC INSTALL COMPLETE ###"
+	ztp_log "rpm install complete"
 }
 
 
