@@ -16,8 +16,6 @@ function detect_platform() {
 	xrcmd "show plat" | grep "N540-24Z8Q2C-M"
 	if [[ "$?" == 0 ]]; then
 		ztp_log "detect_platform: NCS540"
-		#export RPM_DIR=http://10.67.183.8/public/image/ncs540-731/
-		#export RPMS="ncs540-bgp-1.0.0.0-r73136I.x86_64.rpm ncs540-eigrp-1.0.0.0-r73136I.x86_64.rpm ncs540-isis-1.0.0.0-r73136I.x86_64.rpm ncs540-k9sec-1.0.0.0-r73136I.x86_64.rpm ncs540-li-1.0.0.0-r73136I.x86_64.rpm ncs540-mcast-1.0.0.0-r73136I.x86_64.rpm ncs540-mgbl-1.0.0.0-r73136I.x86_64.rpm ncs540-mpls-1.0.0.0-r73136I.x86_64.rpm ncs540-mpls-te-rsvp-1.0.0.0-r73136I.x86_64.rpm ncs540-ospf-1.0.0.0-r73136I.x86_64.rpm ncs540-xcare-1.0.0.0-r73136I.x86_64.rpm"
 		export RPM_DIR=http://10.67.183.8/public/image/NCS540-iosxr-k9-7.1.2/
 		export RPMS="ncs540-eigrp-1.0.0.0-r712.x86_64.rpm ncs540-isis-1.0.0.0-r712.x86_64.rpm ncs540-k9sec-1.1.0.0-r712.x86_64.rpm ncs540-li-1.0.0.0-r712.x86_64.rpm ncs540-mcast-1.0.0.0-r712.x86_64.rpm ncs540-mgbl-1.0.0.0-r712.x86_64.rpm ncs540-mpls-1.0.0.0-r712.x86_64.rpm ncs540-mpls-te-rsvp-1.0.0.0-r712.x86_64.rpm ncs540-ospf-1.0.0.0-r712.x86_64.rpm"
 		return 0
@@ -26,20 +24,20 @@ function detect_platform() {
 	xrcmd "show plat" | grep -e "(NCS-550|NC55)"
 	if [[ "$?" == 0 ]]; then
 		ztp_log "detect_platform: NCS5500"
-		#export RPM_DIR=http://10.67.183.8/public/image/NCS5500-iosxr-k9-6.6.25/
-		#export RPMS="ncs5500-isis-2.1.0.0-r6625.x86_64.rpm   ncs5500-mcast-2.1.0.0-r6625.x86_64.rpm  ncs5500-mpls-2.1.0.0-r6625.x86_64.rpm     ncs5500-k9sec-3.1.0.0-r6625.x86_64.rpm  ncs5500-mgbl-3.0.0.0-r6625.x86_64.rpm   ncs5500-mpls-te-rsvp-3.1.0.0-r6625.x86_64.rpm ncs5500-li-1.0.0.0-r6625.x86_64.rpm        ncs5500-ospf-2.0.0.0-r6625.x86_64.rpm"
-		export RPM_DIR=http://10.67.183.8/public/image/NCS5500-iosxr-k9-7.1.2/
-		export RPMS="ncs5500-eigrp-1.0.0.0-r712.x86_64.rpm ncs5500-isis-2.1.0.0-r712.x86_64.rpm ncs5500-k9sec-3.2.0.0-r712.x86_64.rpm ncs5500-li-1.0.0.0-r712.x86_64.rpm ncs5500-mcast-3.0.0.0-r712.x86_64.rpm ncs5500-mgbl-3.0.0.0-r712.x86_64.rpm ncs5500-mpls-2.1.0.0-r712.x86_64.rpm ncs5500-mpls-te-rsvp-3.1.0.0-r712.x86_64.rpm ncs5500-ospf-2.0.0.0-r712.x86_64.rpm"
+		export RPM_DIR=http://10.67.183.8/public/image/NCS5500-iosxr-k9-7.5.1/
+		export RPMS="ncs5500-eigrp-1.0.0.0-r751.x86_64.rpm ncs5500-isis-2.1.0.0-r751.x86_64.rpm ncs5500-k9sec-3.1.0.0-r751.x86_64.rpm ncs5500-li-1.0.0.0-r751.x86_64.rpm ncs5500-lictrl-1.0.0.0-r751.x86_64.rpm ncs5500-mcast-3.0.0.0-r751.x86_64.rpm ncs5500-mgbl-3.0.0.0-r751.x86_64.rpm ncs5500-mpls-2.1.0.0-r751.x86_64.rpm ncs5500-mpls-te-rsvp-3.1.0.0-r751.x86_64.rpm ncs5500-ospf-2.0.0.0-r751.x86_64.rpm"
 		return 0
 	fi 
 	
 	xrcmd "show plat" | grep -e "A9K-*|A99-*"
 	if [[ "$?" == 0 ]]; then
 		ztp_log "detect_platform: ASR9k"
-		export RPM_DIR=http://10.67.183.8/public/image/asr9k-x64/
-		export RPMS="asr9k-mpls-te-rsvp-x64-2.1.0.0-r73136I.x86_64.rpm asr9k-mpls-te-rsvp-x64-2.1.0.0-r7399.x86_64.rpm asr9k-mpls-x64-2.0.0.0-r73136I.x86_64.rpm asr9k-mpls-x64-2.0.0.0-r7399.x86_64.rpm asr9k-optic-x64-1.0.0.0-r73136I.x86_64.rpm asr9k-optic-x64-1.0.0.0-r7399.x86_64.rpm asr9k-ospf-x64-1.0.0.0-r73136I.x86_64.rpm asr9k-ospf-x64-1.0.0.0-r7399.x86_64.rpm asr9k-parser-x64-2.0.0.0-r73136I.x86_64.rpm asr9k-parser-x64-2.0.0.0-r7399.x86_64.rpm asr9k-services-x64-1.0.0.0-r73136I.x86_64.rpm asr9k-services-x64-1.0.0.0-r7399.x86_64.rpm asr9k-xcare-x64-1.0.0.0-r73136I.x86_64.rpm asr9k-xcare-x64-1.0.0.0-r7399.x86_64.rpm"
+		export RPM_DIR=http://10.67.183.8/public/image/
+		export RPMS="ASR9K-x64-iosxr-px-k9-7.5.1.tar"
 		return 0
 	fi 
+	
+	ztp_log "no platform detected"
 	
 	return 1
 }
@@ -47,6 +45,10 @@ function detect_platform() {
 function ztp_log() {
     # Sends logging information to local file only
     echo "$(date +"%b %d %H:%M:%S") "$1 >> $LOGFILE
+}
+
+function get_serial() {
+	ztp_log "getting serial number not implemented"
 }
 
 function install_all_rpms(){
@@ -57,7 +59,7 @@ function install_all_rpms(){
 		return 1
 	fi
 	
-	xrcmd "install activate *r6625 noprompt"
+	xrcmd "install activate *r751 noprompt"
     if [[ "$?" != 0 ]]; then
         ztp_log "package activation failed"
 		return 1
@@ -79,14 +81,13 @@ function install_all_rpms(){
 ztp_log "Starting autoprovision process...";
 detect_platform;
 
-ztp_log "rpm dir $RPM_DIR"
-ztp_log "rpms $RPMS"
-
-
 if [[ "$?" == 1 ]]; then
 	ztp_log "did not find recognised platform"
 	exit 1
 fi
+
+ztp_log "rpm dir $RPM_DIR"
+ztp_log "rpms $RPMS"
 
 ztp_log "platform detection complete"
 
@@ -96,10 +97,10 @@ install_all_rpms;
 ztp_log "Applying vrf mgmt commands"
 cat >/tmp/config <<EOF
 !!!!!!!!!!!! XR bootstrap
-username cisco
+username admin
  group root-lr
  group cisco-support
- secret ###########
+ secret 123Cisco123
 !
 
  vrf mgmt
