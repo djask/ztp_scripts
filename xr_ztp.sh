@@ -13,7 +13,7 @@ source /pkg/bin/ztp_helper.sh
 
 function detect_platform() {
 	ztp_log "getting platform"
-	xrcmd "show plat" | grep "N540-24Z8Q2C-M"
+	xrcmd "show platform" | grep "N540-24Z8Q2C-M"
 	if [[ "$?" == 0 ]]; then
 		ztp_log "detect_platform: NCS540"
 		export RPM_DIR=http://10.67.183.8/public/image/NCS540-iosxr-k9-7.1.2/
@@ -21,7 +21,7 @@ function detect_platform() {
 		return 0
 	fi 
 	
-	xrcmd "show plat" | grep -e "(NCS-550|NC55)"
+	xrcmd "show platform" | grep -e "NCS\?-\?55"
 	if [[ "$?" == 0 ]]; then
 		ztp_log "detect_platform: NCS5500"
 		export RPM_DIR=http://10.67.183.8/public/image/NCS5500-iosxr-k9-7.5.1/
@@ -29,7 +29,7 @@ function detect_platform() {
 		return 0
 	fi 
 	
-	xrcmd "show plat" | grep -e "A9K-*|A99-*"
+	xrcmd "show platform" | grep -e "A9[90]"
 	if [[ "$?" == 0 ]]; then
 		ztp_log "detect_platform: ASR9k"
 		export RPM_DIR=http://10.67.183.8/public/image/
@@ -59,6 +59,8 @@ function install_all_rpms(){
 		return 1
 	fi
 	
+	sleep 180
+	
 	xrcmd "install activate *r751 noprompt"
     if [[ "$?" != 0 ]]; then
         ztp_log "package activation failed"
@@ -70,6 +72,8 @@ function install_all_rpms(){
 	else
 		echo -ne "yes\n 2048\n" | xrcmd "crypto key generate rsa"
 	fi
+	
+	sleep 180
 	
 	ztp_log "rpm add complete, committing"
 	xrcmd "install commit"
@@ -92,6 +96,11 @@ ztp_log "rpms $RPMS"
 ztp_log "platform detection complete"
 
 install_all_rpms;
+
+if [[ "$?" == 1 ]]; then
+	ztp_log "did not install RPMs properly"
+	exit 1
+fi
 
 #add some day0
 ztp_log "Applying vrf mgmt commands"
