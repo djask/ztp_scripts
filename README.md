@@ -20,4 +20,4 @@ Support for static IPs is currently not implemented.
 Support for hostnames is currently not implemented
 
 ### Example
-![image](https://user-images.githubusercontent.com/6979581/146726714-fd7efcff-de32-4edb-8437-ddad677aaff5.png)
+![image](https://user-images.githubusercontent.com/6979581/146726927-faee58f5-8b15-4f41-825f-037d43f4f9f9.png)
